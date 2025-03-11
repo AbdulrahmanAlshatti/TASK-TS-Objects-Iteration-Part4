@@ -58,8 +58,7 @@ const cars: Car[] = [
  */
 function getCarMake(car: Car): string {
   // write your code here...
-
-  return ""; // replace empty string with what you see is fit
+  return car.make;
 }
 
 /**
@@ -73,8 +72,7 @@ function getCarMake(car: Car): string {
  */
 function isCarColorMatching(car: Car, color: string): boolean {
   // write your code here...
-
-  return false; // replace false with what you see is fit
+  return car.color == color;
 }
 
 /**
@@ -105,8 +103,16 @@ function addCar(
   color: string
 ): Car[] {
   // write your code here...
-
-  return []; // replace empty array with what you see is fit
+  cars.push(
+    {
+      id: id,
+      make: make,
+      model: model,
+      year: year,
+      color: color
+    }
+  )
+  return cars; 
 }
 
 /**
@@ -120,8 +126,7 @@ function addCar(
  */
 function countCarsMadeInYear(cars: Car[], year: number): number {
   // write your code here...
-
-  return Infinity; // replace Infinity with what you see is fit
+  return cars.filter(car=>car.year === year).length
 }
 
 /**
@@ -137,8 +142,7 @@ function countCarsMadeInYear(cars: Car[], year: number): number {
  */
 function removeCarById(cars: Car[], id: number): Car[] {
   // write your code here...
-
-  return []; // replace empty array with what you see is fit
+  return cars.filter(car=> car.id !== id)
 }
 
 /**
@@ -162,8 +166,13 @@ function updateCarColor(
   newColor: string
 ): Car | "No Car Found" {
   // write your code here...
+  let car = cars.find(car=> car.id === id)
 
-  return "No Car Found"; // replace "No Car Found" with what you see is fit
+  if(car === undefined)
+    return "No Car Found";
+  
+  car.color = newColor;
+  return car;
 }
 
 export {
